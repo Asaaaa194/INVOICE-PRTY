@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>F.M BROTHERS - Final Invoice</title>
+    <style>
+        @page { size: A4; margin: 8mm; }
+        body { font-family: 'Arial', sans-serif; background-color: #f0f2f5; padding: 20px; font-size: 11px; color: #000; }
+        
+        .invoice-box { 
+            max-width: 780px; 
+            margin: auto; 
+            padding: 20px; 
+            border: 1px solid #000; 
+            background: #fff; 
+            box-sizing: border-box;
+        }
+
+        .header { text-align: center; margin-bottom: 14px; }
+        .header h1 { margin: 0; font-size: 26px; text-transform: uppercase; font-weight: bold; }
+        .header p { margin: 2px 0; font-weight: bold; font-size: 11px; }
+        
+        .invoice-title { 
+            text-align: center; font-size: 19px; font-weight: bold; 
+            margin: 6px 0; border: 2px solid #000; padding: 3px; 
+        }
+        
+        table { width: 100%; border-collapse: collapse; table-layout: fixed; margin-bottom: -1px; }
+        td, th { border: 1px solid #000; padding: 5px 8px; vertical-align: top; word-wrap: break-word; }
+        
+        .items-table th { background: #f2f2f2; text-align: center; }
+        
+        /* Interactive Elements */
+        .controls { text-align: center; margin-bottom: 15px; }
+        .btn { padding: 10px 20px; cursor: pointer; border-radius: 5px; border: none; font-weight: bold; margin: 0 5px; }
+        .btn-print { background: #007bff; color: white; }
+        .btn-add { background: #28a745; color: white; }
+        .btn-remove-row { color: red; background: none; font-weight: bold; cursor: pointer; border: none; }
+
+        @media print {
+            .controls, .btn-remove-row, .btn-remove-col { display: none !important; }
+            body { background: white; padding: 0; }
+            .invoice-box { border: 1px solid #000; width: 100%; box-shadow: none; margin: 0; }
+        }
+
+        [contenteditable] { outline: none; }
+        [contenteditable]:focus { background: #fffde7; }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <button class="btn btn-add" onclick="addRow()">+ Add Description Line</button>
+        <button class="btn btn-print" onclick="window.print()">Print / Save PDF</button>
+    </div>
+
+    <div class="invoice-box">
+        <div class="header">
+            <h1 contenteditable="true">F.M BROTHERS</h1>
+            <p contenteditable="true">OFFICE NO. 611 6th FLOOR, TRADE AVENUE HASRAT MOHANI ROAD, KARACHI-PAKISTAN</p>
+            <p contenteditable="true">Tel: 9221-32477523 </p>
+            <p contenteditable="true">Email: imp.fmb@gmail.com</p>
+        </div>
+
+        <div style="text-align: right; font-weight: bold; margin-bottom: 2px;">Statement Date : <span contenteditable="true">10-APR-2026</span></div>
+        <div class="invoice-title">INVOICE</div>
+
+        <table>
+            <tr>
+                <td width="55%" colspan="2" rowspan="4">
+                    <strong>Client :</strong> <span contenteditable="true">ADAMJEE ENGINEERING (PVT) LIMITED</span><br>
+                    <span contenteditable="true">PLOT NO 1 & 16 SECTOR 20 KORANGI INDUSTRIAL AREA KARACHI-PAKISTAN</span>
+                </td>
+                <td width="22%"><strong>Invoice No.</strong></td>
+                <td width="23%"><span contenteditable="true">IMP-00654</span></td>
+            </tr>
+            <tr>
+                <td><strong>Date :</strong></td>
+                <td><span contenteditable="true">10-APR-2026</span></td>
+            </tr>
+            <tr>
+                <td><strong>Job No :</strong></td>
+                <td><span contenteditable="true">---</span></td>
+            </tr>
+            <tr>
+                <td><strong>IGM No. :</strong></td>
+                <td><span contenteditable="true">215128/2026</span></td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>Shipper :</strong> <span contenteditable="true">KUANG TAI METAL INDUSTRIAL CO LTD</span></td>
+                <td><strong>Index No. :</strong></td>
+                <td><span contenteditable="true">201</span></td>
+            </tr>
+            <tr>
+                <td width="27%"><strong>BL # :</strong> <span contenteditable="true">RKAKHI2602616</span></td>
+                <td width="28%"><strong>DT :</strong> <span contenteditable="true">27/02/2026</span></td>
+                <td><strong>CBM :</strong></td>
+                <td><span contenteditable="true">10.00 M3</span></td>
+            </tr>
+            <tr>
+                <td><strong>Vessel :</strong> <span contenteditable="true">ONE MISSION</span></td>
+                <td><strong>DT :</strong> <span contenteditable="true">11/04/2026</span></td>
+                <td><strong>Gross Wt :</strong></td>
+                <td><span contenteditable="true">8588.00 Kg</span></td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>Commodity # :</strong> <span contenteditable="true">---</span></td>
+                <td><strong>Net Wt :</strong></td>
+                <td><span contenteditable="true">8002.00 Kg</span></td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>Packages :</strong> <span contenteditable="true">11-CRATES</span></td>
+                <td><strong>Origin :</strong></td>
+                <td><span contenteditable="true">TAIWAN</span></td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>Containers # :</strong> <span contenteditable="true">---</span></td>
+                <td><strong>Discharge :</strong></td>
+                <td><span contenteditable="true">KARACHI</span></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="border-bottom: 2px solid #000;"></td>
+                <td><strong>Type :</strong></td>
+                <td><span contenteditable="true">LCL</span></td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2"><strong>Exch Rate :</strong> <span contenteditable="true">287.00</span></td>
+            </tr>
+        </table>
+
+        <table class="items-table" id="itemsTable">
+            <thead>
+                <tr>
+                    <th width="30px" class="btn-remove-col"></th>
+                    <th width="40px">S.No</th>
+                    <th>Description</th>
+                    <th width="40px">Qty</th>
+                    <th width="70px">Rate</th>
+                    <th width="90px">Amount (FC)</th>
+                    <th width="90px">Amount (RS)</th>
+                </tr>
+            </thead>
+            <tbody oninput="calculateInvoice()">
+                <tr>
+                    <td align="center" class="btn-remove-col"><button class="btn-remove-row" onclick="removeRow(this)">x</button></td>
+                    <td align="center">1</td>
+                    <td contenteditable="true">OCEAN FREIGHT</td>
+                    <td align="center" contenteditable="true">10</td>
+                    <td align="right" contenteditable="true">2.00</td>
+                    <td align="right" contenteditable="true">20.00</td> 
+                    <td align="right" contenteditable="true" class="row-total">5740.00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <tr>
+                <td width="75%" align="right" style="border-top: 2px solid #000;"><strong>Net Amount</strong></td>
+                <td width="25%" align="right" style="border-top: 2px solid #000;"><strong>RS <span id="grandTotal">5740.00</span></strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <strong>In Words:</strong> RUPEES <span id="wordsDisplay" style="text-transform: uppercase; font-weight: bold;">Five Thousand Seven Hundred Forty Only</span>
+                </td>
+            </tr>
+        </table>
+
+        <div style="margin-top: 30px;">
+            <strong>For : F.M BROTHERS</strong><br><br><br>
+            ___________________________<br>
+            <strong>Accounts Department</strong>
+            <p style="font-size: 9px; margin-top: 5px;">Note: Computer generated invoice, no signature required.</p>
+        </div>
+
+        <div style="border-top: 1px dashed #000; margin-top: 40px; padding-top: 5px;">
+            <p style="text-align: center; font-size: 9px; margin: 0 0 5px 0;">Please cut along the line</p>
+            <div style="display: flex; justify-content: space-between;">
+                <strong>BL # : <span contenteditable="true">RKAKHI2602616</span></strong>
+                <strong>Client : <span contenteditable="true">ADAMJEE ENGINEERING (PVT) LIMITED</span></strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addRow() {
+            var table = document.getElementById("itemsTable").getElementsByTagName('tbody')[0];
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount);
+            row.innerHTML = `
+                <td align="center" class="btn-remove-col"><button class="btn-remove-row" onclick="removeRow(this)">x</button></td>
+                <td align="center">${rowCount + 1}</td>
+                <td contenteditable="true">New Description</td>
+                <td align="center" contenteditable="true">0</td>
+                <td align="right" contenteditable="true">0.00</td>
+                <td align="right" contenteditable="true">0.00</td> 
+                <td align="right" contenteditable="true" class="row-total">0.00</td>
+            `;
+            calculateInvoice();
+        }
+
+        function removeRow(btn) {
+            btn.closest('tr').remove();
+            var rows = document.getElementById("itemsTable").getElementsByTagName('tbody')[0].rows;
+            for (var i = 0; i < rows.length; i++) { rows[i].cells[1].innerHTML = i + 1; }
+            calculateInvoice();
+        }
+
+        function calculateInvoice() {
+            var rows = document.getElementById("itemsTable").getElementsByTagName('tbody')[0].rows;
+            var total = 0;
+            for (var i = 0; i < rows.length; i++) {
+                // Hum column number 6 (Amount RS) ko read kar rahe hain
+                var rsVal = parseFloat(rows[i].querySelector('.row-total').innerText.replace(/,/g, '')) || 0;
+                total += rsVal;
+            }
+            document.getElementById("grandTotal").innerText = total.toLocaleString(undefined, {minimumFractionDigits: 2});
+            document.getElementById("wordsDisplay").innerText = numberToWords(Math.floor(total)) + " Only";
+        }
+
+        function numberToWords(num) {
+            var a = ['','One ','Two ','Three ','Four ', 'Five ','Six ','Seven ','Eight ','Nine ','Ten ','Eleven ','Twelve ','Thirteen ','Fourteen ','Fifteen ','Sixteen ','Seventeen ','Eighteen ','Nineteen '];
+            var b = ['', '', 'Twenty','Thirty','Forty','Fifty', 'Sixty','Seventy','Eighty','Ninety'];
+            
+            function convert(n) {
+                if (n < 20) return a[n];
+                if (n < 100) return b[Math.floor(n/10)] + (n%10 !== 0 ? " " + a[n%10] : "");
+                if (n < 1000) return a[Math.floor(n/100)] + "Hundred " + (n%100 !== 0 ? "and " + convert(n%100) : "");
+                if (n < 100000) return convert(Math.floor(n/1000)) + "Thousand " + (n%1000 !== 0 ? convert(n%1000) : "");
+                if (n < 10000000) return convert(Math.floor(n/100000)) + "Lakh " + (n%100000 !== 0 ? convert(n%100000) : "");
+                return "Big Number";
+            }
+            return num === 0 ? "Zero" : convert(num);
+        }
+        window.onload = calculateInvoice;
+    </script>
+</body>
+</html>
